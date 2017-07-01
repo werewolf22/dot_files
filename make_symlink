@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+###########################################################################################################################
+# With the help of reference in http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/   #
+# This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles                              #
+###########################################################################################################################
+
+# dotfiles directory
+dir=~/dotfiles
+# old dotfiles backup directory
+olddir=~/dotfiles_old
+# list of files/folders to symlink in homedir
+files="bash_profile  bashrc  bin  gemrc  gitconfig  profile  vimrc  xinputrc"
+
+# plugin manager for vim
+setup_vundle() {
+    mkdir -p ~/.vim/bundle
+    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    vim +BundleInstall
+}
+
+# create dotfiles_old in homedir
+echo "Creating $olddir for backup of any existing dotfiles in ~"
+mkdir -p $olddir
+echo "...done"
+
+# change to the dotfiles directory
+echo "Changing to the $dir directory"
+cd $dir
+echo "...done"
+
+# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
+for file in $files; do
+    # -f tests for regular file and -d tests for directory, -h test for symbolic link
+    if [-d ~/$file ] && [ ! -h ~/$file ]; then
+        echo "Moving $file from ~ to $olddir"
+        mv ~/$file ~/dotfiles_old/
+    elif [ -f ~/.$file -a ! -h ~/.$file ]; then
+        echo "Moving .$file from ~ to $olddir"
+        mv ~/.$file ~/dotfiles_old/
+    else
+	echo "$file or .$file is not a valid file or directory"
+    fi
+    echo "Creating symlink to $file in home directory."
+    ln -s $dir/$file ~/.$file
+done
+
+if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+    setup_vundle
+fi

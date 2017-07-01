@@ -1,0 +1,4 @@
+#!/bin/bash
+# music download automated
+
+cd Music && youtube-dl -f 140 $1

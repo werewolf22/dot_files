@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+require 'httparty'
+class CsQuotes
+	include HTTParty
+	base_uri  "quotes.stormconsultancy.co.uk"
+
+	def popular_quote
+		self.class.get('/popular.json')
+	end
+	def quotes
+		self.class.get('/quotes.jason')
+	end
+end
+
+csquote= CsQuotes.new
+data=[]
+csquote.popular_quote.each do  |q|
+	data << q["quote"]
+end
+i=0
+loop do
+  quote=data.sort_by{rand}
+  if i < quote.length
+    i=0
+  else
+    i+=1
+  end
+  puts quote[i]
+  puts "------ press enter to get another quote -------"
+  puts "------ press anykey and hit enter to exit -----"
+  handle = gets.chomp
+  exit(0) unless handle == ""
+end
