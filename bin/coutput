@@ -1,0 +1,14 @@
+#!/bin/bash
+if [ $# -eq 2 ]; then
+if [ -f $1 ] && [[ $1 =~ .+\.c$ ]];  then
+	gcc $1 -o $2
+	./$2
+elif [ -f $1 ] && [[ $1 =~ .+\.cpp$ ]];  then
+	g++ $1 -o $2
+	./$2
+else
+	echo "Give a c/c++ file"
+fi
+else
+	echo 'Give only two inputs one for file and another for executible name!!'
+fi
