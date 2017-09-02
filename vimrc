@@ -22,30 +22,50 @@ Plugin 'VundleVim/Vundle.vim'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"
+"
 Plugin 'scrooloose/nerdtree'
+"
 "A pretty status bar for Vim
 Plugin 'itchyny/lightline.vim'
+"
 "enables you to expand CSS selectors into HTML markup
 Plugin 'mattn/emmet-vim'
+"
 Plugin 'Shutnik/jshint2.vim'
+"
 Plugin 'skammer/vim-css-color'
+"
 Plugin 'hail2u/vim-css3-syntax'
+"
 " quick search for files
 Plugin 'kien/ctrlp.vim'
+"
 " ultimate solution for snippets engine
 Plugin 'SirVer/ultisnips'
+" YouCompleteMe and UltiSnips compatibility, with the helper of supertab
+" (via http://stackoverflow.com/a/22253548/1626737)
+let g:SuperTabDefaultCompletionType    = '<C-n>'
+let g:SuperTabCrMapping                = 0
+let g:UltiSnipsExpandTrigger           = '<tab>'
+let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
 " Trigger configuration for snippit usage
-let g:UltiSnipsExpandTrigger="<c-t>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " code-completion engine
 Plugin 'Valloric/YouCompleteMe'
+"
 Plugin 'tpope/vim-rails'
+"
 "buffer as tabs
 Plugin 'jlanzarotta/bufexplorer'
+"
 Plugin 'tpope/vim-surround'
+"
 Plugin 'honza/vim-snippets'
-
+"
+"
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -86,7 +106,7 @@ set hidden
 " Set off the other paren
 highlight MatchParen ctermbg=4
 
-" Ignoring case is a fun trick
+" Ignoring case is a fun trick in search
 set ignorecase
 
 " And so is Artificial Intellegence!
@@ -98,7 +118,7 @@ set mouse=a
 " Got backspace?
 set backspace=2
 
-" Cool tab completion stuff
+" Cool tab completion stuff in the cmd line when : pressed
 set wildmenu
 set wildmode=list:longest,full
 
@@ -120,9 +140,6 @@ vnoremap <C-c> "+y
 vnoremap <C-x> "+x
 map <C-v> "+gP
 
-" map saving to what it should be
-nmap <c-s> :w<CR>
-
 " sane text files
 set fileformat=unix
 set encoding=utf-8
@@ -142,9 +159,9 @@ else
 endif
 
 " sane editing
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 " mksession to open files that were not closed last time
 set sessionoptions=buffers
@@ -159,7 +176,7 @@ map <C-l> <C-w>l
 nnoremap <leader>cf :let @+=expand("%:t")<CR>
 "}}}
 
-"{{{Look and Feel
+"{{{ Look and Feel
 
 " Favorite Color Scheme
 if has("gui_running")
@@ -174,7 +191,7 @@ endif
 set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
-" }}}
+"}}}
 
 
 "{{{ auto commands
@@ -201,4 +218,5 @@ au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 9 = Caps_Lock'
 au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 9 = Escape'
 au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 "}}}
+
 
