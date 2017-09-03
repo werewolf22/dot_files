@@ -32,10 +32,6 @@ Plugin 'itchyny/lightline.vim'
 "enables you to expand CSS selectors into HTML markup
 Plugin 'mattn/emmet-vim'
 "
-Plugin 'Shutnik/jshint2.vim'
-"
-Plugin 'skammer/vim-css-color'
-"
 Plugin 'hail2u/vim-css3-syntax'
 "
 " quick search for files
@@ -65,7 +61,15 @@ Plugin 'tpope/vim-surround'
 "
 Plugin 'honza/vim-snippets'
 "
-"
+"Proper JSON filetype detection, and support.
+Plugin 'leshill/vim-json'
+" vim already has syntax support for javascript, but the indent support is
+" horrid. This fixes that.
+Plugin 'pangloss/vim-javascript'
+
+" vim indents HTML very poorly on it's own. This fixes a lot of that.
+Plugin 'indenthtml.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -174,6 +178,14 @@ map <C-l> <C-w>l
 
 "copying filename to genome register (foo.txt)
 nnoremap <leader>cf :let @+=expand("%:t")<CR>
+
+" We have VCS -- we don't need this stuff.
+set nobackup " We have vcs, we don't need backups.
+set nowritebackup " We have vcs, we don't need backups.
+set noswapfile " They're just annoying. Who likes them?
+
+" Clear match highlighting
+noremap <leader><space> :noh<cr>:call clearmatches()<cr>
 "}}}
 
 "{{{ Look and Feel
