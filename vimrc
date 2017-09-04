@@ -26,6 +26,21 @@ Plugin 'VundleVim/Vundle.vim'
 "
 Plugin 'scrooloose/nerdtree'
 "
+"syntax checker
+Plugin 'scrooloose/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_php_checkers = ['php', 'phpcs']
+
+"disabled Syntastic by default
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 "A pretty status bar for Vim
 Plugin 'itchyny/lightline.vim'
 "
@@ -129,7 +144,11 @@ set wildmode=list:longest,full
 " switch on line number
 set number
 
-" moving a line up/down
+" moving line(s) up/down by selecting in visual mode
+xnoremap <S-Up> :m-2<CR>gv=gv
+xnoremap <S-Down> :m'>+<CR>gv=gv
+
+"move a line up/down normal mode
 nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>
 
@@ -142,7 +161,7 @@ set grepprg=grep\ -nH\ $*
 " map cut & paste to what they bloody should be
 vnoremap <C-c> "+y
 vnoremap <C-x> "+x
-map <C-v> "+gP
+map <C-v> "+gp
 
 " sane text files
 set fileformat=unix
