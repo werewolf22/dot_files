@@ -14,8 +14,9 @@ files="bash_profile  bashrc  bin  gemrc  gitconfig  profile  vimrc  xinputrc"
 # plugin manager for vim
 setup_vundle() {
     mkdir -p ~/.vim/bundle
-    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    vim +BundleInstall
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# (optional) For those using the fish shell: add set shell=/bin/bash to your .vimrc
+	vim +PluginInstall +qall
 }
 
 # create dotfiles_old in homedir
@@ -39,6 +40,7 @@ for file in $files; do
         mv ~/.$file ~/dotfiles_old/
     else
 	echo "$file or .$file is not a valid file or directory"
+	continue
     fi
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
