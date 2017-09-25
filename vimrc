@@ -36,10 +36,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_php_checkers = [ 'phpcs']
 
 "disabled Syntastic by default
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 "A pretty status bar for Vim
 Plugin 'itchyny/lightline.vim'
@@ -185,6 +184,7 @@ endif
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set expandtab
 
 " mksession to open files that were not closed last time
 set sessionoptions=buffers
@@ -205,6 +205,8 @@ set noswapfile " They're just annoying. Who likes them?
 
 " Clear match highlighting
 noremap <leader><space> :noh<cr>:call clearmatches()<cr>
+
+set cursorline          " highlight current line
 "}}}
 
 "{{{ Look and Feel
