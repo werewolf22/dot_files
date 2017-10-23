@@ -51,6 +51,8 @@ Plugin 'hail2u/vim-css3-syntax'
 " quick search for files
 Plugin 'kien/ctrlp.vim'
 "
+" code-completion engine
+Plugin 'Valloric/YouCompleteMe'
 " ultimate solution for snippets engine
 Plugin 'SirVer/ultisnips'
 " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
@@ -63,8 +65,6 @@ let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
 let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
 " Trigger configuration for snippit usage
-" code-completion engine
-Plugin 'Valloric/YouCompleteMe'
 "
 Plugin 'tpope/vim-rails'
 "

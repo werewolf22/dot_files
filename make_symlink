@@ -5,7 +5,7 @@
 ###########################################################################################################################
 
 # dotfiles directory
-dir=~/dotfiles
+dir=~/dot_files
 # old dotfiles backup directory
 olddir=~/dotfiles_old
 # list of files/folders to symlink in homedir
@@ -32,7 +32,7 @@ echo "...done"
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
     # -f tests for regular file and -d tests for directory, -h test for symbolic link
-    if [-d ~/$file ] && [ ! -h ~/$file ]; then
+    if [ -d ~/$file ] && [ ! -h ~/$file ]; then
         echo "Moving $file from ~ to $olddir"
         mv ~/$file ~/dotfiles_old/
     elif [ -f ~/.$file -a ! -h ~/.$file ]; then
