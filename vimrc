@@ -213,7 +213,7 @@ set cursorline          " highlight current line
 
 " Favorite Color Scheme
 if has("gui_running")
-   colorscheme inkpot
+   colorscheme vrunchbang-dark
    " Remove Toolbar
    set guioptions-=T
    "Terminus is AWESOME
