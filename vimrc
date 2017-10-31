@@ -207,6 +207,9 @@ set noswapfile " They're just annoying. Who likes them?
 noremap <leader><space> :noh<cr>:call clearmatches()<cr>
 
 set cursorline          " highlight current line
+
+" block visual selection
+nnoremap <C-S-v> <c-v>
 "}}}
 
 "{{{ Look and Feel
