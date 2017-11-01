@@ -157,10 +157,6 @@ filetype plugin on
 syntax enable
 set grepprg=grep\ -nH\ $*
 
-" map cut & paste to what they bloody should be
-vnoremap <C-c> "+y
-vnoremap <C-x> "+x
-map <C-v> "+gp
 
 " sane text files
 set fileformat=unix
@@ -209,7 +205,15 @@ noremap <leader><space> :noh<cr>:call clearmatches()<cr>
 set cursorline          " highlight current line
 
 " block visual selection
-nnoremap <C-S-v> <c-v>
+nnoremap <leader>v <c-v>
+
+" map cut & paste to what they bloody should be
+vnoremap <C-c> "+y
+vnoremap <C-x> "+x
+map <C-v> "+gp
+
+" to save files opened on read only mode
+cnoremap w!! w !sudo tee %
 "}}}
 
 "{{{ Look and Feel
