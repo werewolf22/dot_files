@@ -1,5 +1,14 @@
 #!/usr/bin/env ruby
+begin
 require 'httparty'
+rescue LoadError
+    # Rescue
+    # puts e.message
+    puts "cannot load required file -- httparty"
+    puts "Install gem Httparty first using the following command."
+    puts "gem install httparty "
+    exit
+end
 class CsQuotes
     include HTTParty
     base_uri  "quotes.stormconsultancy.co.uk"
