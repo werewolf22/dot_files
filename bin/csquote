@@ -29,9 +29,15 @@ end
 
 csquote= CsQuotes.new
 data=[]
+begin
 csquote.popular_quote.each do  |q|
     data << { true => q["quote"] }
 end
+rescue SocketError
+   puts "Looks like there is no internet connection!!"
+   exit
+end
+
 loop do
     quote=data.sort_by{rand}
     if quote[0].has_key? true

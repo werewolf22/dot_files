@@ -126,3 +126,4 @@ export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+export PATH="$PATH:$HOME/.composer/vendor/bin" # Add laraver installer path

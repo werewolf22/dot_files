@@ -24,7 +24,6 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 "
 "
-Plugin 'scrooloose/nerdtree'
 "
 "syntax checker
 Plugin 'scrooloose/syntastic'
@@ -43,10 +42,6 @@ nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 "A pretty status bar for Vim
 Plugin 'itchyny/lightline.vim'
 "
-"enables you to expand CSS selectors into HTML markup
-Plugin 'mattn/emmet-vim'
-"
-Plugin 'hail2u/vim-css3-syntax'
 "
 " quick search for files
 Plugin 'kien/ctrlp.vim'
@@ -66,23 +61,11 @@ let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
 " Trigger configuration for snippit usage
 "
-Plugin 'tpope/vim-rails'
 "
 "buffer as tabs
 Plugin 'jlanzarotta/bufexplorer'
 "
-Plugin 'tpope/vim-surround'
 "
-Plugin 'honza/vim-snippets'
-"
-"Proper JSON filetype detection, and support.
-Plugin 'leshill/vim-json'
-" vim already has syntax support for javascript, but the indent support is
-" horrid. This fixes that.
-Plugin 'pangloss/vim-javascript'
-
-" vim indents HTML very poorly on it's own. This fixes a lot of that.
-Plugin 'indenthtml.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
