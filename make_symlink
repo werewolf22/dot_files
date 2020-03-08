@@ -4,6 +4,8 @@
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles                              #
 ###########################################################################################################################
 
+# home directory
+home=~
 # dotfiles directory
 dir=~/dot_files
 # old dotfiles backup directory
@@ -33,17 +35,18 @@ echo "...done"
 for file in $files; do
     # -f tests for regular file and -d tests for directory, -h test for symbolic link
     if [ -d ~/$file ] && [ ! -h ~/$file ]; then
-        echo "Moving $file from ~ to $olddir"
-        mv ~/$file ~/dotfiles_old/
+        echo "Moving $file from $home to $olddir"
+        mv ~/$file $olddir
+    	echo "Creating symlink to $file in $home directory."
+    	ln -s $dir/$file ~/$file
     elif [ -f ~/.$file -a ! -h ~/.$file ]; then
-        echo "Moving .$file from ~ to $olddir"
-        mv ~/.$file ~/dotfiles_old/
+        echo "Moving .$file from $home to $olddir"
+        mv ~/.$file $olddir
+    	echo "Creating symlink to $file in $home directory."
+    	ln -s $dir/$file ~/.$file
     else
 	echo "$file or .$file is not a valid file or directory"
-	continue
     fi
-    echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
 done
 
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
