@@ -120,10 +120,12 @@ if ! shopt -oq posix; then
 fi
 
 
-[[ -d "/home/linuxbrew/.linuxbrew" ]] && export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
-export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
-
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-export PATH="$PATH:$HOME/.composer/vendor/bin" # Add laraver installer path
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# export PATH="$PATH:$HOME/.composer/vendor/bin" # Add laraver installer path
+ source "$HOME/python-virtual/project-virtual/bin/activate" # added python virtual environment
+# once=false
+# if [ -d ~/python-virtual ] && [ "$once" = false ] ; then
+#     once=true
+ #    cd ~/python-virtual && source "$HOME/python-virtual/project-virtual/bin/activate" # added python virtual environment
+# fi
