@@ -22,9 +22,13 @@ setup_vundle() {
 }
 
 # create dotfiles_old in homedir
-echo "Creating $olddir for backup of any existing dotfiles in ~"
-mkdir -p $olddir
-echo "...done"
+if [ ! -d $olddir ]; then
+    echo "Creating $olddir for backup of any existing dotfiles in ~"
+    mkdir -p $olddir
+    echo "...done"
+else
+    echo "The directory $olddir already exists"
+fi
 
 # change to the dotfiles directory
 echo "Changing to the $dir directory"
@@ -45,7 +49,13 @@ for file in $files; do
     	echo "Creating symlink to $file in $home directory."
     	ln -s $dir/$file ~/.$file
     else
-	echo "$file or .$file is not a valid file or directory"
+        if [  -h ~/$file ]; then
+            echo "$file is already used as symbolic link"
+        elif [ -h ~/.$file ]; then
+            echo ".$file is already used as symbolic link"
+        else
+            echo "there is no $file"
+        fi
     fi
 done
 
