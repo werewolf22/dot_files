@@ -13,18 +13,14 @@
 
     Contains gem configuration.
 
-4. ## gitconfig
-
-    Contains git configuration.
-
-5. ## make_symlink
+4. ## make_symlink
 
     Contains bash script to create symlink of dotfiles and vundle installation for vim plugin management.
 
-6. ## vimrc
+5. ## vimrc
 
     Contains vim configuration.
 
-7. ## xinputrc
+6. ## xinputrc
 
     Contains configuration of the input method.
