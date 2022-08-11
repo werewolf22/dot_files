@@ -5,22 +5,14 @@
 
     Contains custom automation scripts.
 
-2. ## bash_profile, profile and bashrc
+2. ##  profile and zshrc
 
-    Contains bash terminal configuration.
+    Contains zsh configuration.
 
-3. ## gemrc
+3. ## make_symlink
 
-    Contains gem configuration.
+    Contains shell script to create symlink of dotfiles.
 
-4. ## make_symlink
-
-    Contains bash script to create symlink of dotfiles and vundle installation for vim plugin management.
-
-5. ## vimrc
-
-    Contains vim configuration.
-
-6. ## xinputrc
+4. ## xinputrc
 
     Contains configuration of the input method.
