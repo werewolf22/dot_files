@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "$@.txt" | sed 's/ //g'
+echo "$@" | sed 's/ //g'

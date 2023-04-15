@@ -1,0 +1,4 @@
+#!/bin/bash
+imageDir="/home/werewolf/Pictures/Screenshots/"
+latestImage=$(ls -t $imageDir | head -1 )
+eog "$imageDir$latestImage"
