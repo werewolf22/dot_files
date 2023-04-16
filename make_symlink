@@ -11,15 +11,15 @@ dir=~/dot_files
 # old dotfiles backup directory
 olddir=~/dotfiles_old
 # list of files/folders to symlink in homedir
-files="zshrc  bin  profile  xinputrc"
+files="zshrc  bin  profile  xinputrc vimrc"
 
 # plugin manager for vim
-# setup_vundle() {
-#     mkdir -p ~/.vim/bundle
-#     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+setup_vundle() {
+     mkdir -p ~/.vim/bundle
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # (optional) For those using the fish shell: add set shell=/bin/bash to your .vimrc
-# 	vim +PluginInstall +qall
-# }
+ 	vim +PluginInstall +qall
+}
 
 # create dotfiles_old in homedir
 if [ ! -d $olddir ]; then
@@ -59,6 +59,6 @@ for file in $files; do
     fi
 done
 
-# if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-#     setup_vundle
-# fi
+if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+	setup_vundle
+fi

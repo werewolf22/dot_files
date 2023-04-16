@@ -7,23 +7,20 @@ $dateFormat = 'Y-m-d';
 $datetimeFormat = $dateFormat.' H-i-s';
 $date = $argv[1] ?? date($dateFormat);
 $dirPath = '/home/werewolf/Pictures/Screenshots';
-$files = scandir($dirPath);
+$files = array_diff(scandir($dirPath), ['.', '..']);
 
-// Filter out non-files and hidden files 
-$files = array_filter($files, function($file) use ($dirPath) {
-    return is_file("$dirPath/$file") && !in_array($file, ['.', '..']) && $file[0] !== '.';
+// Filter out non-files and hidden files
+$files = array_filter($files, function($file) use ($dirPath, $date) {
+    return is_file("$dirPath/$file") && $file[0] !== '.' && preg_match("/$date/", $file);
 });
-$files = array_map(function ($file) {
+$fileDates = array_map(function ($file) {
 	preg_match('/\d+-\d+-\d+ \d+-\d+-\d+/', $file, $match);
 	return $match[0];
 }, $files);
-$filteredDates = array_filter($files, function($file) use ($date) {
-	return preg_match("/$date/", $file);
-});
-print_r($filteredDates);
-$comparisionDates = $filteredDates;
+print_r($fileDates);
+$comparisionDates = $fileDates;
 array_pop($comparisionDates);array_unshift($comparisionDates, $date.' 00-00-00');
 $hoursdiffs = array_map(function($date, $date1) use ($datetimeFormat) {
 	return Carbon::createFromFormat($datetimeFormat, $date)->diff(Carbon::createFromFormat($datetimeFormat, $date1))->format('%h hr %i min');
-}, $filteredDates, $comparisionDates);
+}, $fileDates, $comparisionDates);
 print_r($hoursdiffs);
