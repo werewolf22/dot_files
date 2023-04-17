@@ -1,58 +1,54 @@
-#!/usr/bin/env ruby
-begin
-require 'httparty'
-rescue LoadError
-    # Rescue
-    # puts e.message
-    puts "cannot load required file -- httparty"
-    puts "Install gem Httparty first using the following command."
-    puts "gem install httparty "
-    exit
-end
-class CsQuotes
-    include HTTParty
-    base_uri  "quotes.stormconsultancy.co.uk"
+#!/usr/bin/php
+<?php
 
-    def popular_quote
-        self.class.get('/popular.json')
-    end
-    def quotes
-        self.class.get('/quotes.jason')
-    end
-    def unfetched(quote)
-        quote.each do |q|
-            return true if   q.has_key? true
-        end
-        return false
-    end
-end
+class Quotes {
+    private $baseUri = "zenquotes.io/api/quotes";
+    
+    public function hasUnfetchedQuotes($quotes) {
+        foreach ($quotes as $quote) {
+            if (!$quote['fetched']) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public function sendRequest($endpoint='') {
+        $url = 'https://' . $this->baseUri.$endpoint;
+        $response = file_get_contents($url);
+        if (!$response) {
+            throw new Exception('Failed to fetch data from ' . $url);
+        }
+        return json_decode($response, true);
+    }
+}
 
-csquote= CsQuotes.new
-data=[]
-begin
-csquote.popular_quote.each do  |q|
-    data << { true => q["quote"] }
-end
-rescue SocketError
-   puts "Looks like there is no internet connection!!"
-   exit
-end
+$quote = new Quotes();
+$quotes = $quote->sendRequest();
+$data = [];
+foreach ($quotes as $q) {
+    $data[] = ['quote' => $q['q'], 'author' => $q['a'], 'fetched' => true];
+}
 
-loop do
-    quote=data.sort_by{rand}
-    if quote[0].has_key? true
-        puts quote[0][true]
-        quote[0][false]= quote[0].delete true
-    else
-        if csquote.unfetched(quote)
-            next
-        else
-            puts "You've fetched all the quotes available."
-            exit(0)
-        end
-    end
-    puts "------ press enter to get another quote -------"
-    puts "------ press anykey and hit enter to exit -----"
-    handle = gets.chomp
-    exit(0) unless handle == ""
-end
+while (true) {
+    $quote = $data[array_rand($data)];
+    if ($quote['fetched']) {
+        echo "\n  \033[1m“ {$quote['quote']} ”\033[0m\n  \033[96m— {$quote['author']}\033[0m\n";
+        $quote['fetched'] = false;
+    } else {
+        if ($quote->hasUnfetchedQuotes($data)) {
+            continue;
+        } else {
+            echo "You've fetched all the quotes available.\n";
+            exit(0);
+        }
+    }
+    echo "------ press enter to get another quote -------\n";
+    echo "------ press any key and hit enter to exit -----\n";
+    $handle = fgets(STDIN);
+    if ($handle == "\n") {
+        continue;
+    } else {
+        exit(0);
+    }
+}
