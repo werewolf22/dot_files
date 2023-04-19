@@ -1,0 +1,22 @@
+/** 
+# packkages
+- aws toolkit
+- duplicate action
+**/
+{
+    "files.autoSave": "onWindowChange",
+    "editor.detectIndentation": false,
+    "window.zoomLevel": 2,
+    "diffEditor.wordWrap": "on",
+    "editor.wordWrap": "on",
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "diffEditor.renderSideBySide": false,
+
+    
+    "workbench.activityBar.visible": false,
+    "workbench.editor.showTabs": false,
+    "workbench.sideBar.location": "right",
+    "workbench.statusBar.visible": false,
+    
+
+}
