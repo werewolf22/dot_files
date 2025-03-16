@@ -1,9 +1,14 @@
 #!/usr/bin/php
 <?php
 
+$privateQuote = [
+    "When you want to help people, you tell them the truth. When you wnat to help yourself, you tell them what they want to hear.",
+    "Code is like humor. When you have to explain it, it's bad",
+    "Success is not final, failure is not fatal: it is the courage to continue that counts",
+];
 class Quotes {
     private $baseUri = "zenquotes.io/api/quotes";
-    
+
     public function hasUnfetchedQuotes($quotes) {
         foreach ($quotes as $quote) {
             if (!$quote['fetched']) {
@@ -12,7 +17,7 @@ class Quotes {
         }
         return false;
     }
-    
+
     public function sendRequest($endpoint='') {
         $url = 'https://' . $this->baseUri.$endpoint;
         $response = file_get_contents($url);

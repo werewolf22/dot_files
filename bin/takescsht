@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Directory to save screenshots
+SAVE_DIR="$HOME/Pictures/Screenshots"
+mkdir -p "$SAVE_DIR"
+
+while true; do
+    # Wait for an hour before taking the next screenshot
+    sleep 3600
+    
+    TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+    FILENAME="$SAVE_DIR/screenshot_$TIMESTAMP.png"
+    
+    # Take a screenshot
+    gnome-screenshot -f "$FILENAME"
+    echo "Screenshot saved: $FILENAME"
+done
